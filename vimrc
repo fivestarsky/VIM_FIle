@@ -126,7 +126,7 @@ nmap <C-c> <ESC>:res-1<CR>
 "map <C-z> <ESC>:res+1<CR>
 "map <C-c> <ESC>:res-1<CR>
 
-"第一次执行后删除
-PluginInstall
-GoInstallBinaries 
+"第一次执行请执行这两个冒号空间命令，之后删除
+"PluginInstall
+"GoInstallBinaries 
 
