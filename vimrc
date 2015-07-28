@@ -126,5 +126,7 @@ nmap <C-c> <ESC>:res-1<CR>
 "map <C-z> <ESC>:res+1<CR>
 "map <C-c> <ESC>:res-1<CR>
 
-
+"第一次执行后删除
+PluginInstall
+GoInstallBinaries 
 
