@@ -5,6 +5,8 @@ alias ll='ls -la'
 alias la='ls -la'
 alias vi='vim'
 alias grep="grep --color=auto"
+alias hn="hostname"
+
 alias -s go=vim
 alias -s html=vim
 alias -s py=vim
