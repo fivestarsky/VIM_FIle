@@ -20,10 +20,6 @@ echo "export GOPATH=$HOME/gopath" >> ~/.bashrc
 echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.bashrc
 source ~/.bashrc
 
-echo "export GOPATH=$HOME/gopath" >> ~/.zshrc
-echo "export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.zshrc
-source ~/.zshrc
-
 mkdir ~/.vim/colors
 cd ~/.vim/colors
 wget https://raw.githubusercontent.com/fatih/molokai/master/colors/molokai.vim
