@@ -1,11 +1,11 @@
 #!/bin/bash
 
 wget https://raw.githubusercontent.com/fivestarsky/VIM_FIle/master/vimrc 
-mv ~/vimrc ~/.vimrc
+mv ./vimrc ~/.vimrc
 
 wget https://raw.githubusercontent.com/fivestarsky/VIM_FIle/master/zshrc
 rm ~/.zshrc -rf
-mv ~/zshrc ~/.zshrc
+mv ./zshrc ~/.zshrc
 
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
