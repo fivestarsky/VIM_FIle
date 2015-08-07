@@ -1,0 +1,44 @@
+## 枚举系统支持的OS类型，如：Ubuntu_64
+$ VBoxManage list -l ostypes
+
+## VBoxManage命令行创建虚拟机
+$ VBoxManage createvm --name ConDevBase --ostype Ubuntu_64 --register --basefolder /root/VB_DATA/
+
+## 命令行修改虚拟机内存和CPU数量
+$ VBoxManage modifyvm ConDevBase --memory 8192  --cpus 4 --acpi on --ioapic on --hwvirtex on --vtxvpid on --cpuhotplug on --chipset ich9 --vrde on --vrdeport 8000
+
+## 命令行禁用虚拟机3D加速
+$ VBoxManage modifyvm ConDevBase --accelerate3d off
+
+####如果没有设置过nat network 第一次建立一个，参考命令如下
+##############################################
+VBoxManage natnetwork add --netname ConDevNatNet --network "192.168.19.0/24" --enable --dhcp on
+VBoxManage natnetwork start --netname ConDevNatNet
+VBoxManage natnetwork stop --netname ConDevNatNet
+VBoxManage natnetwork remove --netname ConDevNatNet
+##################################################
+
+## 创建网卡
+VBoxManage modifyvm ConDevBase --nic1 nat --nictype1 virtio
+VBoxManage modifyvm ConDevBase --nic2 natnetwork  --nictype2 virtio --nat-network2 ConDevNatNet
+
+## 命令行创建一个虚拟机磁盘文件，空间大小64G
+$ VBoxManage createhd --filename "ConDevBase.vdi" --size 64000
+
+## 命令行配置虚拟机SATA参数
+$ VBoxManage storagectl ConDevBase --name ConDevBase-SATA --add sata --controller IntelAHCI --bootable on
+
+## 命令行配置虚拟机硬盘文件为指定的.vdi
+$ VBoxManage storageattach ConDevBase --storagectl "SATA" --port 0 --device 0 --type hdd --medium "ConDevBase.vdi"
+
+## 命令行配置虚拟机光驱，并指定磁盘介质为指定的ISO文件
+$ VBoxManage storageattach ConDevBase --storagectl "SATA" --port 1 --device 0 --type dvddrive --medium ./ubuntu-15.04-server-amd64.iso
+
+## 虚拟机SSH端口映射，根据需要修改端口
+VBoxManage modifyvm ConDevBase --natpf1 "ssh,tcp,,22100,,22"
+
+## 启动虚拟机
+$ VBoxHeadless --startvm ConDevBase
+## 启动虚拟器，并关闭默认开放的 vred端口
+$ VBoxHeadless --startvm ConDevBase --vrde off
+
