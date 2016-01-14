@@ -1,0 +1,29 @@
+安装Docker
+1、添加 aptkey
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+2添加deb源
+/etc/apt/sources.list.d/docker.list
+deb https://apt.dockerproject.org/repo ubuntu-wily main
+
+3 更新源的索引
+apt-get update
+
+4 如果有的话 删除老的docker
+apt-get purge lxc-docker
+
+5 验证新的docker是否有合法的安装源(都没有安装docker:没有安装新的docker)
+apt-cache policy docker-engine
+
+6 添加docker 运行的必须的扩张：cgroup aufs
+sudo apt-get install linux-image-extra-$(uname -r)
+
+7 编辑/etc/default/grub
+添加
+GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
+sudo update-grub  <---这条命令更新 grub
+
+更新完了之后重新启动
+--------------------------------------------------------------------------------------------------------------
+
+安装k8s(在docker里面运行的)
