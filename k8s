@@ -17,6 +17,7 @@ apt-cache policy docker-engine
 
 6 添加docker 运行的必须的扩张：cgroup aufs
 sudo apt-get install linux-image-extra-$(uname -r)
+sudo aptitude install aufs-tools cgroup-bin cgroup-lite cgroup-tools cgroupfs-mount 
 
 7 编辑/etc/default/grub
 添加
